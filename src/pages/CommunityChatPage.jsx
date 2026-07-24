@@ -56,8 +56,8 @@ export default function CommunityChatPage() {
       setSending(false);
     }
   };
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
   
   //   const client = new Client({
   //     webSocketFactory: () => new SockJS("https://fitconnect-backend-production-f147.up.railway.app/ws"),
