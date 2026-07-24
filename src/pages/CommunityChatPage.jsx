@@ -73,6 +73,27 @@ export default function CommunityChatPage() {
         );
       },
       onStompError: (err) => console.error("STOMP error:", err),
+      connectHeaders: {
+  
+
+  debug: (msg) => console.log("STOMP:", msg),
+
+  onConnect: () => {
+    console.log("✅ Connected");
+  },
+
+  onStompError: (frame) => {
+    console.error("STOMP ERROR:", frame);
+  },
+
+  onWebSocketError: (event) => {
+    console.error("WS ERROR:", event);
+  },
+
+  onWebSocketClose: (event) => {
+    console.log("WS CLOSED:", event);
+  },
+
     });
   
     client.activate();
