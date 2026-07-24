@@ -59,43 +59,95 @@ export default function CommunityChatPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
   
-    const client = new Client({
-      webSocketFactory: () => new SockJS("https://fitconnect-backend-production-f147.up.railway.app/ws"),
-      connectHeaders: { Authorization: `Bearer ${token}` },
-      onConnect: () => {
-        client.subscribe(
-          `/topic/community/${communityId}`,
-          (message) => {
-            const newMessage = JSON.parse(message.body);
-            setMessages((prev) => [...prev, newMessage]);
-          },
-          { Authorization: `Bearer ${token}` }
-        );
-      },
-      onStompError: (err) => console.error("STOMP error:", err),
-      connectHeaders: {
+  //   const client = new Client({
+  //     webSocketFactory: () => new SockJS("https://fitconnect-backend-production-f147.up.railway.app/ws"),
+  //     connectHeaders: { Authorization: `Bearer ${token}` },
+  //     onConnect: () => {
+  //       client.subscribe(
+  //         `/topic/community/${communityId}`,
+  //         (message) => {
+  //           const newMessage = JSON.parse(message.body);
+  //           setMessages((prev) => [...prev, newMessage]);
+  //         },
+  //         { Authorization: `Bearer ${token}` }
+  //       );
+  //     },
+  //     onStompError: (err) => console.error("STOMP error:", err),
+  //     connectHeaders: {
   
 
-  debug: (msg) => console.log("STOMP:", msg),
+  // debug: (msg) => console.log("STOMP:", msg),
 
 
-  onWebSocketError: (event) => {
-    console.error("WS ERROR:", event);
-  },
+  // onWebSocketError: (event) => {
+  //   console.error("WS ERROR:", event);
+  // },
 
-  onWebSocketClose: (event) => {
-    console.log("WS CLOSED:", event);
-  },
+  // onWebSocketClose: (event) => {
+  //   console.log("WS CLOSED:", event);
+  // },
 
-    });
+  //   });
   
-    client.activate();
-    stompClientRef.current = client;
+  //   client.activate();
+  //   stompClientRef.current = client;
   
-    return () => {
-      client.deactivate(); // cleanup: disconnect when leaving this page
-    };
-  }, [communityId]);
+  //   return () => {
+  //     client.deactivate(); // cleanup: disconnect when leaving this page
+  //   };
+  // }, [communityId]);
+    useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  const client = new Client({
+    webSocketFactory: () =>
+      new SockJS("https://fitconnect-backend-production-f147.up.railway.app/ws"),
+
+    connectHeaders: {
+      Authorization: `Bearer ${token}`,
+    },
+
+    debug: (msg) => console.log("STOMP:", msg),
+
+    onConnect: () => {
+      console.log("✅ Connected");
+
+      client.subscribe(
+        `/topic/community/${communityId}`,
+        (message) => {
+          console.log("📩 Received:", message.body);
+
+          const newMessage = JSON.parse(message.body);
+          setMessages((prev) => [...prev, newMessage]);
+        },
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      );
+
+      console.log("✅ Subscribed");
+    },
+
+    onStompError: (frame) => {
+      console.error("STOMP ERROR:", frame);
+    },
+
+    onWebSocketError: (event) => {
+      console.error("WebSocket ERROR:", event);
+    },
+
+    onWebSocketClose: (event) => {
+      console.log("WebSocket CLOSED:", event);
+    },
+  });
+
+  client.activate();
+  stompClientRef.current = client;
+
+  return () => {
+    client.deactivate();
+  };
+}, [communityId]);
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
