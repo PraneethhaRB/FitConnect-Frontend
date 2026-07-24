@@ -78,13 +78,6 @@ export default function CommunityChatPage() {
 
   debug: (msg) => console.log("STOMP:", msg),
 
-  onConnect: () => {
-    console.log("✅ Connected");
-  },
-
-  onStompError: (frame) => {
-    console.error("STOMP ERROR:", frame);
-  },
 
   onWebSocketError: (event) => {
     console.error("WS ERROR:", event);
