@@ -60,7 +60,7 @@ export default function CommunityChatPage() {
     const token = localStorage.getItem("token");
   
     const client = new Client({
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS("fitconnect-backend-production-f147.up.railway.appws"),
       connectHeaders: { Authorization: `Bearer ${token}` },
       onConnect: () => {
         client.subscribe(
