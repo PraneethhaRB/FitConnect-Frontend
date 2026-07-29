@@ -62,7 +62,7 @@ export default function CommunityChatPage() {
       setSending(false);
     }
   };
-<<<<<<< HEAD
+
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   
@@ -155,7 +155,7 @@ export default function CommunityChatPage() {
     client.deactivate();
   };
 }, [communityId]);
-=======
+
   const [coachInsight, setCoachInsight] = useState(null);
   const [loadingCoach, setLoadingCoach] = useState(false);
   
