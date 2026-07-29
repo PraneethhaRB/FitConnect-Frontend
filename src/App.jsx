@@ -7,6 +7,9 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import CommunityChatPage from "./pages/CommunityChatPage";
 import CommunityManagePage from "./pages/CommunityManagePage";
 import PageWrapper from "./components/layout/PageWrapper";
+import LeaderboardPage from "./pages/LeaderboardPage";
+
+
 function App() {
   return (
     <Routes>
@@ -20,7 +23,8 @@ function App() {
         }
       />
       <Route path="/community/:communityId/manage" element={<ProtectedRoute><CommunityManagePage /></ProtectedRoute>} />
-      
+      <Route path="/community/:communityId/leaderboard"
+  element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
       <Route path="/community/:communityId" element={<ProtectedRoute><CommunityChatPage /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/login" />} />
       <Route path="/signup" element={<SignupPage />} />

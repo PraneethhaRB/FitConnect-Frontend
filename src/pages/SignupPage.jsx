@@ -7,7 +7,9 @@ import Input from "../components/ui/Input";
 import PageWrapper from "../components/layout/PageWrapper";
 import ErrorMessage from "../components/ui/ErrorMessage";
 export default function SignupPage() {
-  const [form, setForm] = useState({ name: "", email: "", password: "", goal: "" });
+  const [form, setForm] = useState({
+    name: "", email: "", password: "", goal: "", goalCategory: ""
+  });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +19,14 @@ export default function SignupPage() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+  const GOAL_CATEGORIES = [
+    { value: "WEIGHT_LOSS",    label: "Lose Weight",      emoji: "⚖️" },
+    { value: "MUSCLE_GAIN",    label: "Build Muscle",     emoji: "💪" },
+    { value: "ENDURANCE",      label: "Improve Endurance",emoji: "🏃" },
+    { value: "FLEXIBILITY",    label: "Flexibility",      emoji: "🧘" },
+    { value: "NUTRITION",      label: "Better Nutrition", emoji: "🥗" },
+    { value: "GENERAL_FITNESS",label: "General Fitness",  emoji: "🏋️" },
+  ];
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -50,6 +59,31 @@ export default function SignupPage() {
           <Input label="Email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required />
           <Input label="Password" name="password" type="password" value={form.password} onChange={handleChange} placeholder="At least 8 characters" required minLength={8} />
           <Input label="Your goal (optional)" name="goal" value={form.goal} onChange={handleChange} placeholder="e.g. Lose weight" />
+          <div className="mb-4">
+  <label className="block text-sm font-medium text-text mb-2">
+    Primary goal (optional)
+  </label>
+  <div className="grid grid-cols-2 gap-2">
+    {GOAL_CATEGORIES.map((cat) => (
+      <button
+        key={cat.value}
+        type="button"
+        onClick={() => setForm({
+          ...form,
+          goalCategory: form.goalCategory === cat.value ? "" : cat.value
+        })}
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all ${
+          form.goalCategory === cat.value
+            ? "border-primary bg-primary/10 text-primary"
+            : "border-border text-text hover:border-primary"
+        }`}
+      >
+        <span>{cat.emoji}</span>
+        <span>{cat.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
 
           <Button type="submit" className="w-full mt-2" disabled={loading}>
             {loading ? "Creating account..." : "Sign Up"}
