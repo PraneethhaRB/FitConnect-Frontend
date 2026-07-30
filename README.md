@@ -425,11 +425,11 @@ FitConnect transforms fitness from a solo tracking activity into an **AI-assiste
 The platform demonstrates the integration of:
 
 **Full Stack Development + AI Agents + RAG + Real-Time Systems + Secure Architecture**<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 12 37 PM" src="https://github.com/user-attachments/assets/5a8db9ed-47ed-476e-9b90-b165b2213c51" />
-<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 12 27 PM" src="https://github.com/user-attachments/assets/feeb6ff7-0fc5-42ca-b348-4e2de4a40bdf" />
-<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 12 19 PM" src="https://github.com/user-attachments/assets/eba6ece8-da97-4eee-9b7e-7b0004a028b5" />
-<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 48 PM" src="https://github.com/user-attachments/assets/a1492ae0-53ee-4bef-8843-8705fcbead8d" />
-<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 10 PM" src="https://github.com/user-attachments/assets/636843fa-1326-4241-9229-c241da8fd15e" />
 <img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 07 PM" src="https://github.com/user-attachments/assets/c79b7f92-357d-4859-a687-53f41d664e84" />
 <img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 01 PM" src="https://github.com/user-attachments/assets/05f2bcbf-c2a7-46f2-8f48-0f98ba401b9c" />
+<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 48 PM" src="https://github.com/user-attachments/assets/a1492ae0-53ee-4bef-8843-8705fcbead8d" />
+<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 12 27 PM" src="https://github.com/user-attachments/assets/feeb6ff7-0fc5-42ca-b348-4e2de4a40bdf" />
+<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 12 19 PM" src="https://github.com/user-attachments/assets/eba6ece8-da97-4eee-9b7e-7b0004a028b5" />
+<img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 11 10 PM" src="https://github.com/user-attachments/assets/636843fa-1326-4241-9229-c241da8fd15e" />
 <img width="1512" height="982" alt="Screenshot 2026-07-30 at 4 13 13 PM" src="https://github.com/user-attachments/assets/b4f81021-b541-43a3-8f7d-fe25268f277c" />
 
