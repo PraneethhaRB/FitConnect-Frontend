@@ -108,7 +108,7 @@ export default function CommunityChatPage() {
 
   const client = new Client({
     webSocketFactory: () =>
-      new SockJS("https://fitconnect-backend-production-f147.up.railway.app/ws"),
+      new SockJS("https://fitconnect-backend-jb9v.onrender.com/ws"),
 
     connectHeaders: {
       Authorization: `Bearer ${token}`,
