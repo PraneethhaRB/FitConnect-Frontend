@@ -147,6 +147,10 @@ export default function DashboardPage() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState(null);
   const [asking, setAsking] = useState(false);
+  const [goal, setGoal] = useState("");
+const [plan, setPlan] = useState(null);
+const [generatingPlan, setGeneratingPlan] = useState(false);
+const [planError, setPlanError] = useState("");
   
   const askQuestion = async (e) => {
     e.preventDefault();
@@ -157,6 +161,26 @@ export default function DashboardPage() {
       setAnswer(res.data.data);
     } finally {
       setAsking(false);
+    }
+  };
+  const generatePlan = async (e) => {
+    e.preventDefault();
+    if (!goal.trim()) return;
+    setGeneratingPlan(true);
+    setPlanError("");
+    try {
+      const res = await fetch("https://fitness-agent-pipeline.onrender.com/generate-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json();
+      setPlan(data.plan);
+    } catch (err) {
+      setPlanError("Couldn't generate a plan right now — try again in a moment.");
+    } finally {
+      setGeneratingPlan(false);
     }
   };
   useEffect(() => {
@@ -382,7 +406,50 @@ export default function DashboardPage() {
     </div>
   )}
 </div>
+<div className="bg-card rounded-xl p-5 shadow-sm mb-8 max-w-md">
+  <p className="font-heading font-semibold text-text mb-3 flex items-center gap-2">
+    <Sparkles size={18} className="text-primary" />
+    Generate a weekly plan
+  </p>
+  <form onSubmit={generatePlan} className="flex gap-2 mb-3">
+    <input
+      type="text"
+      value={goal}
+      onChange={(e) => setGoal(e.target.value)}
+      placeholder="e.g. lose 10kg in 3 months"
+      className="flex-1 px-3 py-2 rounded-lg border border-border text-sm text-text focus:outline-none focus:ring-2 focus:ring-accent"
+    />
+    <button
+      type="submit"
+      disabled={generatingPlan}
+      className="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-accent transition-colors disabled:opacity-50 shrink-0"
+    >
+      {generatingPlan ? "Generating…" : "Generate"}
+    </button>
+  </form>
 
+  {generatingPlan && (
+    <p className="text-xs text-text/40 font-mono">
+      This can take 10–15s — 4 agents are working on it.
+    </p>
+  )}
+
+  {planError && (
+    <p className="text-sm text-warning">{planError}</p>
+  )}
+
+  {plan && !generatingPlan && (
+    <div className="bg-primary/5 rounded-lg p-4 mt-3 max-h-96 overflow-y-auto animate-fadeIn">
+      <p className="text-sm text-text leading-relaxed whitespace-pre-wrap">{plan}</p>
+      <button
+        onClick={() => setPlan(null)}
+        className="text-xs text-gray-400 mt-3 hover:text-text"
+      >
+        Dismiss
+      </button>
+    </div>
+  )}
+</div>
           {/* Joined communities */}
           <section className="mb-4">
             <h2 className="font-heading text-lg font-semibold text-text mb-4 flex items-center gap-2">
